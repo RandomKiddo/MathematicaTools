@@ -1,0 +1,475 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16318,        467]
+NotebookOptionsPosition[     14354,        426]
+NotebookOutlinePosition[     14751,        442]
+CellTagsIndexPosition[     14708,        439]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Probability Density Functions", "Title",
+ CellChangeTimes->{{3.9235930321717167`*^9, 3.923593034180067*^9}, {
+  3.9235930687880783`*^9, 
+  3.9235930749365187`*^9}},ExpressionUUID->"9f8ce08d-ae32-4802-95f8-\
+cdc3d23c59fb"],
+
+Cell[CellGroupData[{
+
+Cell["Generic PDF Function", "Section",
+ CellChangeTimes->{{3.923597316736681*^9, 
+  3.923597324262546*^9}},ExpressionUUID->"76b280be-c315-4468-be8d-\
+645f3d8d041f"],
+
+Cell[TextData[{
+ "The generic formula for a PDF is as follows: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["P", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["a", "TI"], "\[LessEqual]", 
+             StyleBox["x", "TI"], "\[LessEqual]", 
+             StyleBox["b", "TI"]}], ")"}], "\[LongEqual]", 
+         SubsuperscriptBox["\[Integral]", 
+          StyleBox["a", "TI"], 
+          StyleBox["b", "TI"]], 
+         StyleBox["f", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "dx"}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "P(a\\leq x\\leq b)=\\int_{a}^{b} f(x) \\mbox{dx}", "state" -> "Boxes"|>,
+    
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "2cd8abbf-4ba7-44b3-b873-9273c7f6dece"],
+ ", where ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["f", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "f(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "66af113e-ee4f-4cc7-87bf-a74ad6d085d6"],
+ "is the probability function describing the distribution."
+}], "Text",
+ CellChangeTimes->{{3.923597327926547*^9, 3.923597340972036*^9}, {
+  3.923597383878405*^9, 
+  3.9235974213657*^9}},ExpressionUUID->"01bd569c-4a93-4fe3-aa70-9ea80bc84b14"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"P", "[", 
+    RowBox[{"f_", ",", "x_", ",", "a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{"f", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "a", ",", "b"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Default", "[", 
+    RowBox[{"P", ",", "3"}], "]"}], "=", 
+   RowBox[{"-", "\[Infinity]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Default", "[", 
+    RowBox[{"P", ",", "4"}], "]"}], "=", "\[Infinity]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9235974319848948`*^9, 3.923597482504915*^9}, {
+  3.9235982985714083`*^9, 3.923598299041813*^9}, {3.923598347066881*^9, 
+  3.923598368878912*^9}, {3.9235984397827587`*^9, 3.923598440315283*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"3c0183d2-3111-4666-8ec3-277714efb681"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Gaussian Distribution", "Section",
+ CellChangeTimes->{{3.923593085515757*^9, 3.923593101194683*^9}, 
+   3.923595946857843*^9},ExpressionUUID->"5a1d6514-eee5-4176-a4bd-\
+b872d2ea4c78"],
+
+Cell[TextData[{
+ "Gaussian Distribution: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["G", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["y", "TI"], ",", "\[Mu]", ",", "\[Sigma]"}], ")"}], 
+         "\[LongEqual]", 
+         FractionBox["1", 
+          RowBox[{"\[Sigma]", 
+            SqrtBox[
+             RowBox[{"2", "\[Pi]"}]]}]], 
+         SuperscriptBox[
+          StyleBox["e", "TI"], 
+          RowBox[{"-", 
+            FractionBox[
+             SuperscriptBox[
+              RowBox[{"(", 
+                RowBox[{
+                  StyleBox["y", "TI"], "-", "\[Mu]"}], ")"}], "2"], 
+             RowBox[{"2", 
+               SuperscriptBox["\[Sigma]", "2"]}]]}]]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "G(y,\\mu,\\sigma)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(y-\\mu)^2}{\
+2\\sigma^2}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1ec3777b-19b8-418f-9f02-4777c5359b08"],
+ "\nA standard Gaussian distribution has  a mean of 0 and a standard \
+deviation of 1. "
+}], "Text",
+ CellChangeTimes->{{3.9235958515190973`*^9, 3.923595863736423*^9}, {
+  3.923595912455608*^9, 
+  3.923595928622287*^9}},ExpressionUUID->"a24adef3-50c3-4df2-8237-\
+7dbc857dbb92"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Gaussian", "[", 
+    RowBox[{"y_", ",", "\[Mu]_", ",", "\[Sigma]_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"\[Sigma]", " ", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"2", " ", "\[Pi]"}], "]"}]}]], 
+    SuperscriptBox["E", 
+     FractionBox[
+      RowBox[{"-", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"y", "-", "\[Mu]"}], ")"}], "2"]}], 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[Sigma]", "2"]}]]]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Default", "[", 
+    RowBox[{"Gaussian", ",", " ", "2"}], "]"}], "=", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Default", "[", 
+    RowBox[{"Gaussian", ",", "3"}], "]"}], "=", "1"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9235931036394863`*^9, 3.923593125265237*^9}, {
+   3.923593159967558*^9, 3.923593169982684*^9}, {3.9235957943696747`*^9, 
+   3.92359584211368*^9}, 3.9235962260334597`*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"a0a57794-a8c8-4ef5-b936-9bfde8d6f202"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Chi-Square Distribution", "Section",
+ CellChangeTimes->{{3.923595940666733*^9, 
+  3.9235959493947687`*^9}},ExpressionUUID->"e06d7ecf-b6d3-47d5-95a6-\
+e1e91d5551e1"],
+
+Cell[TextData[{
+ "Chi-Square Distribution: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["P", "TI"], 
+         RowBox[{"(", 
+           SuperscriptBox["\[Chi]", "2"], ")"}], "\[LongEqual]", 
+         FractionBox["1", 
+          RowBox[{
+            SuperscriptBox["2", 
+             RowBox[{
+               StyleBox["n", "TI"], "/", "2"}]], "\[CapitalGamma]", 
+            RowBox[{"(", 
+              RowBox[{
+                StyleBox["n", "TI"], "/", "2"}], ")"}]}]], 
+         SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox["\[Chi]", "2"], ")"}], 
+          RowBox[{
+            StyleBox["n", "TI"], "/", "2", "-", "1"}]], 
+         SuperscriptBox[
+          StyleBox["e", "TI"], 
+          RowBox[{"-", 
+            SuperscriptBox["\[Chi]", "2"], "/", "2"}]]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "P(\\chi^2)=\\frac{1}{2^{n/2} \
+\\Gamma(n/2)}(\\chi^2)^{n/2-1}e^{-\\chi^2/2}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1d50183d-66a3-46e9-a90a-951fc4a4816f"],
+ "\nWhere n represents the number of degrees of freedom for the distribution.\
+\nThis distribution includes the gamma function: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"\[CapitalGamma]", 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SubsuperscriptBox["\[Integral]", "0", "\[Infinity]"], 
+         SuperscriptBox[
+          StyleBox["e", "TI"], 
+          RowBox[{"-", 
+            StyleBox["t", "TI"]}]], 
+         SuperscriptBox[
+          StyleBox["t", "TI"], 
+          RowBox[{
+            StyleBox["x", "TI"], "-", "1"}]], "dt"}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "\\Gamma (x)=\\int_{0}^{\\infty} e^{-t} t^{x-1} \\mbox{dt}", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "55499e19-7fbf-4a6c-bf8a-f59545cd13c9"]
+}], "Text",
+ CellChangeTimes->{{3.9235959583399267`*^9, 3.923595967892561*^9}, {
+  3.923596064940501*^9, 
+  3.923596091121879*^9}},ExpressionUUID->"e2503996-34fc-4a6e-8036-\
+32cffb5b14ec"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChiSquare", "[", 
+    RowBox[{"chi2_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{
+      SuperscriptBox["2", 
+       RowBox[{"n", "/", "2"}]], " ", 
+      RowBox[{"Gamma", "[", 
+       RowBox[{"n", "/", "2"}], "]"}]}]], 
+    SuperscriptBox[
+     RowBox[{"(", "chi2", ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "/", "2"}], ")"}], "-", "1"}]], " ", 
+    SuperscriptBox["E", 
+     RowBox[{
+      RowBox[{"-", "chi2"}], "/", "2"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.923596165476351*^9, 3.9235961804659433`*^9}, {
+  3.923596212841971*^9, 3.923596275049271*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"52e027c4-5d0a-43b5-9b86-30d55b07636a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Binomial Distribution", "Section",
+ CellChangeTimes->{{3.923597712088861*^9, 
+  3.9235977146013327`*^9}},ExpressionUUID->"0974063f-120c-477b-9a00-\
+b09a9f5e48eb"],
+
+Cell[TextData[{
+ "Binomial Distribution: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["P", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["m", "TI"], ",", 
+             StyleBox["N", "TI"], ",", 
+             StyleBox["p", "TI"]}], ")"}], "\[LongEqual]", 
+         RowBox[{"(", 
+           GridBox[{{
+              StyleBox["N", "TI"]}, {
+              StyleBox["m", "TI"]}}], ")"}], 
+         SuperscriptBox[
+          StyleBox["p", "TI"], 
+          StyleBox["m", "TI"]], 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{"1", "-", 
+              StyleBox["p", "TI"]}], ")"}], 
+          RowBox[{
+            StyleBox["N", "TI"], "-", 
+            StyleBox["m", "TI"]}]]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "P(m,N,p)={N \\choose m} p^m (1-p)^{N-m}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d8d22dfd-47bd-4c03-97f7-2fb96c544254"],
+ "\nThis distribution represents the probability of getting m successes out \
+of N trials, where the probability of success is p. "
+}], "Text",
+ CellChangeTimes->{{3.92359772650277*^9, 3.923597730723934*^9}, {
+  3.923597840080681*^9, 
+  3.923597865532165*^9}},ExpressionUUID->"20ffb85a-c061-446f-aa0b-\
+81aefee34a04"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Bin", "[", 
+    RowBox[{"m_", ",", "N_", ",", "p_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"Factorial", "[", "N", "]"}], 
+     RowBox[{
+      RowBox[{"Factorial", "[", "m", "]"}], " ", 
+      RowBox[{"Factorial", "[", 
+       RowBox[{"N", "-", "m"}], "]"}]}]], " ", 
+    SuperscriptBox["p", "m"], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "-", "p"}], ")"}], 
+     RowBox[{"N", "-", "m"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.92359787172668*^9, 3.9235979178297987`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"512b6da0-f70d-4999-b01c-0343744381dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Poisson Distribution", "Section",
+ CellChangeTimes->{{3.9235979256570168`*^9, 
+  3.923597928589466*^9}},ExpressionUUID->"67529bf2-0777-4122-9458-\
+859e8784b233"],
+
+Cell[TextData[{
+ "Poisson Distribution: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["P", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["m", "TI"], ",", 
+             StyleBox["N", "TI"], ",", 
+             StyleBox["p", "TI"]}], ")"}], "\[LongEqual]", 
+         FractionBox[
+          SuperscriptBox[
+           StyleBox["N", "TI"], 
+           StyleBox["m", "TI"]], 
+          RowBox[{
+            StyleBox["m", "TI"], "!"}]], 
+         SuperscriptBox[
+          StyleBox["p", "TI"], 
+          StyleBox["m", "TI"]], 
+         SuperscriptBox[
+          StyleBox["e", "TI"], 
+          RowBox[{"-", 
+            StyleBox["p", "TI"], 
+            StyleBox["N", "TI"]}]]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "P(m,N,p)=\\frac{N^m}{m!} p^m e^{-pN}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "3c8190a0-93bc-46cb-8970-242a0ee988a7"],
+ "or ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["P", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["m", "TI"], ",", "\[Mu]"}], ")"}], "\[LongEqual]", 
+         FractionBox[
+          RowBox[{
+            SuperscriptBox[
+             StyleBox["e", "TI"], 
+             RowBox[{"-", "\[Mu]"}]], 
+            SuperscriptBox["\[Mu]", 
+             StyleBox["m", "TI"]]}], 
+          RowBox[{
+            StyleBox["m", "TI"], "!"}]]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "P(m,\\mu)=\\frac{e^{-\\mu} \\mu^m}{m!}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7106bb86-e73d-4c81-9745-b18be640e1a3"],
+ "\nIn this distribution, m represents the number of successes out of N \
+trials, and p the probability of success. For a Poisson distribution, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"\[Mu]", "\[LongEqual]", 
+         StyleBox["N", "TI"], 
+         StyleBox["p", "TI"]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "\\mu=Np", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d4dbcdd5-7b27-4887-837f-b986a2fa5a45"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.923597937532688*^9, 3.9235979744249353`*^9}, {
+  3.923598013721181*^9, 
+  3.923598044024428*^9}},ExpressionUUID->"f0bfc3be-a43c-4d29-b6f7-\
+f31533805335"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Poisson", "[", 
+    RowBox[{"m_", ",", "\[Mu]_"}], "]"}], ":=", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["E", 
+      RowBox[{"-", "\[Mu]"}]], " ", 
+     SuperscriptBox["\[Mu]", "m"]}], 
+    RowBox[{"Factorial", "[", "m", "]"}]]}], ";"}]], "Input",
+ CellChangeTimes->{{3.923598011041832*^9, 3.923598011671083*^9}, {
+  3.9235980482960787`*^9, 3.923598071043047*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"4b5a3efb-ac48-4fb6-9a3e-21b7a534e2b9"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 747},
+WindowMargins->{{Automatic, 159}, {Automatic, 31}},
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"dbfa716c-3756-4a82-9eae-9fbca6065365"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 227, 4, 98, "Title",ExpressionUUID->"9f8ce08d-ae32-4802-95f8-cdc3d23c59fb"],
+Cell[CellGroupData[{
+Cell[832, 30, 165, 3, 67, "Section",ExpressionUUID->"76b280be-c315-4468-be8d-645f3d8d041f"],
+Cell[1000, 35, 1428, 37, 75, "Text",ExpressionUUID->"01bd569c-4a93-4fe3-aa70-9ea80bc84b14"],
+Cell[2431, 74, 867, 22, 73, "Input",ExpressionUUID->"3c0183d2-3111-4666-8ec3-277714efb681"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3335, 101, 189, 3, 67, "Section",ExpressionUUID->"5a1d6514-eee5-4176-a4bd-b872d2ea4c78"],
+Cell[3527, 106, 1311, 36, 89, "Text",ExpressionUUID->"a24adef3-50c3-4df2-8237-7dbc857dbb92"],
+Cell[4841, 144, 1076, 31, 104, "Input",ExpressionUUID->"a0a57794-a8c8-4ef5-b936-9bfde8d6f202"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5954, 180, 170, 3, 67, "Section",ExpressionUUID->"e06d7ecf-b6d3-47d5-95a6-e1e91d5551e1"],
+Cell[6127, 185, 2164, 57, 117, "Text",ExpressionUUID->"e2503996-34fc-4a6e-8036-32cffb5b14ec"],
+Cell[8294, 244, 741, 22, 51, "Input",ExpressionUUID->"52e027c4-5d0a-43b5-9b86-30d55b07636a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9072, 271, 168, 3, 67, "Section",ExpressionUUID->"0974063f-120c-477b-9a00-b09a9f5e48eb"],
+Cell[9243, 276, 1317, 35, 98, "Text",ExpressionUUID->"20ffb85a-c061-446f-aa0b-81aefee34a04"],
+Cell[10563, 313, 644, 18, 50, "Input",ExpressionUUID->"512b6da0-f70d-4999-b01c-0343744381dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11244, 336, 167, 3, 67, "Section",ExpressionUUID->"67529bf2-0777-4122-9458-859e8784b233"],
+Cell[11414, 341, 2410, 66, 102, "Text",ExpressionUUID->"f0bfc3be-a43c-4d29-b6f7-f31533805335"],
+Cell[13827, 409, 499, 13, 51, "Input",ExpressionUUID->"4b5a3efb-ac48-4fb6-9a3e-21b7a534e2b9"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
