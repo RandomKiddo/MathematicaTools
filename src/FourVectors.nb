@@ -1,0 +1,411 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13702,        403]
+NotebookOptionsPosition[     11476,        353]
+NotebookOutlinePosition[     11926,        371]
+CellTagsIndexPosition[     11883,        368]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Four Vectors", "Title",
+ CellChangeTimes->{{3.9236102336334763`*^9, 
+  3.92361023579989*^9}},ExpressionUUID->"41b5b627-536e-4b69-ac86-\
+18514c47df09"],
+
+Cell[TextData[{
+ "For physics purposes, a four vector is displayed using the following \
+notation: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["A", "TI"], "\[Mu]"], "\[LongEqual]", 
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["A", "TI"], "0"], ",", 
+             SubscriptBox[
+              StyleBox["A", "TI"], "1"], ",", 
+             SubscriptBox[
+              StyleBox["A", "TI"], "2"], ",", 
+             SubscriptBox[
+              StyleBox["A", "TI"], "3"]}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "A^\\mu = (A_0,A_1,A_2,A_3)", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "07f3f7b9-f179-409e-b5f6-33ef90d4429f"],
+ ". If we consider that the first component is the \
+\[OpenCurlyDoubleQuote]timelike\[CloseCurlyDoubleQuote] component, and that \
+the other three components following are \[OpenCurlyDoubleQuote]spacelike\
+\[CloseCurlyDoubleQuote], then we can rewrite this expression as ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["A", "TI"], "\[Mu]"], "\[LongEqual]", 
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["A", "TI"], "0"], ",", 
+             OverscriptBox[
+              StyleBox["A", "TI"], "\[RightVector]"]}], ")"}]}], 
+       TraditionalForm], "errors" -> {}, "input" -> 
+     "A^\\mu = (A_0, \\vec{A})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d4c858f7-51ca-4db6-953f-953de30df03a"],
+ ".\n\nDefining a vector is pretty easy in Mathematica, as we just have to \
+use an array. The main functionality of this notebook is the provided physics \
+equations using four vectors in special relativity. "
+}], "Text",
+ CellChangeTimes->{{3.923610252816255*^9, 3.923610278184083*^9}, {
+  3.923610339728881*^9, 3.92361035533057*^9}, {3.923610572175406*^9, 
+  3.923610638515832*^9}, {3.923610690228155*^9, 
+  3.9236107412682858`*^9}},ExpressionUUID->"a1808d37-a118-4b01-aa6d-\
+3213174abd10"],
+
+Cell[CellGroupData[{
+
+Cell["Lorentz Transformation", "Subsection",
+ CellChangeTimes->{{3.923610752857853*^9, 
+  3.923610760817995*^9}},ExpressionUUID->"b9440ea1-9ec6-45f1-bb80-\
+6b4a9782b767"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Gamma]", "[", "\[Beta]_", "]"}], ":=", 
+   FractionBox["1", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"1", "-", 
+      SuperscriptBox["\[Beta]", "2"]}], "]"}]]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalLambda]", "[", "\[Beta]_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Gamma]", "[", "\[Beta]", "]"}], ",", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"\[Gamma]", "[", "\[Beta]", "]"}]}], " ", "\[Beta]"}], ",", 
+       "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"\[Gamma]", "[", "\[Beta]", "]"}]}], " ", "\[Beta]"}], ",", 
+       RowBox[{"\[Gamma]", "[", "\[Beta]", "]"}], ",", "0", ",", "0"}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalLambda]", "[", "\[Beta]", "]"}], "//", 
+  "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.923610766173458*^9, 3.9236107713476553`*^9}, {
+  3.923610966470035*^9, 3.923610976680932*^9}, {3.92361105206207*^9, 
+  3.923611163060618*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"4b17aec9-2927-49b1-a3cd-30a61aa7f1b2"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      FractionBox["1", 
+       SqrtBox[
+        RowBox[{"1", "-", 
+         SuperscriptBox["\[Beta]", "2"]}]]], 
+      RowBox[{"-", 
+       FractionBox["\[Beta]", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["\[Beta]", "2"]}]]]}], "0", "0"},
+     {
+      RowBox[{"-", 
+       FractionBox["\[Beta]", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          SuperscriptBox["\[Beta]", "2"]}]]]}], 
+      FractionBox["1", 
+       SqrtBox[
+        RowBox[{"1", "-", 
+         SuperscriptBox["\[Beta]", "2"]}]]], "0", "0"},
+     {"0", "0", "1", "0"},
+     {"0", "0", "0", "1"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.923611163416847*^9},
+ CellLabel->
+  "Out[3]//MatrixForm=",ExpressionUUID->"59a4768c-b7d8-4c66-8c6d-\
+ed91266467d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Example", "Subsubsection",
+ CellChangeTimes->{{3.923611179578528*^9, 
+  3.923611181876671*^9}},ExpressionUUID->"b65a508b-aa8f-4979-ac68-\
+52182191e9b9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "2", ",", "3"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalLambda]", "[", 
+    RowBox[{"3", "/", "5"}], "]"}], ".", "A"}], "//", 
+  "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.9236111952492037`*^9, 3.9236112118692083`*^9}, {
+  3.923611249825469*^9, 3.923611307685803*^9}, {3.923611381447796*^9, 
+  3.923611394578576*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"dbb7b642-0167-4aae-9326-910b587a5206"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       RowBox[{"-", 
+        FractionBox["3", "4"]}]},
+      {
+       FractionBox["5", "4"]},
+      {"2"},
+      {"3"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.923611262017777*^9, 3.923611308241087*^9}, {
+  3.923611383409041*^9, 3.9236113952721252`*^9}},
+ CellLabel->
+  "Out[17]//MatrixForm=",ExpressionUUID->"38ef1d3c-5170-47fc-aa01-\
+c754cca3b1c6"]
+}, Open  ]],
+
+Cell["\<\
+In Lorentz transformation terms, this would be the value of the above four \
+vector with respect to a frame going three-fifths the speed of light in \
+relation to the original four vector\[CloseCurlyQuote]s rest frame. \
+\>", "Text",
+ CellChangeTimes->{{3.923611401178697*^9, 
+  3.923611454841669*^9}},ExpressionUUID->"e3f7a627-5b7d-434c-8aab-\
+ebb6ebd94f65"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Four Vector Length Squared (In Special Relativity)", "Subsection",
+ CellChangeTimes->{{3.92361152027481*^9, 3.923611528530283*^9}, {
+  3.923611661356802*^9, 
+  3.923611662197009*^9}},ExpressionUUID->"283345f2-0522-4d75-8eab-\
+9aef1413a0ca"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Eta]", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", 
+       RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Eta]", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.923611534630921*^9, 3.9236115711176863`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"60101ab9-787e-4b30-8601-92b85d946938"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "0", "0", "0"},
+     {"0", 
+      RowBox[{"-", "1"}], "0", "0"},
+     {"0", "0", 
+      RowBox[{"-", "1"}], "0"},
+     {"0", "0", "0", 
+      RowBox[{"-", "1"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.923611571735415*^9},
+ CellLabel->
+  "Out[19]//MatrixForm=",ExpressionUUID->"db571661-dd7d-46fc-abf2-\
+0fb76204ab87"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FVLength", "[", "A_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{"A", ".", "\[Eta]", ".", "A"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.923611575954814*^9, 3.9236116123920317`*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"1c0382e5-ec89-4370-ac4f-8a1040816377"],
+
+Cell[CellGroupData[{
+
+Cell["Example", "Subsubsection",
+ CellChangeTimes->{{3.923611623127873*^9, 
+  3.923611624171818*^9}},ExpressionUUID->"584976fe-3f68-49a5-9376-\
+b4548682d5d8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FVLength", "[", "A", "]"}]], "Input",
+ CellChangeTimes->{{3.923611627790032*^9, 3.9236116307787037`*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"a1ade71a-b205-424f-ad2d-2fe3dff815d9"],
+
+Cell[BoxData[
+ RowBox[{"-", "14"}]], "Output",
+ CellChangeTimes->{3.923611631404512*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"4b53481c-f5ca-47a1-b05f-762e6c542e52"]
+}, Open  ]],
+
+Cell[TextData[{
+ "In Einstein\[CloseCurlyQuote]s summation notation, this length squared can \
+be written as follows: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["A", "TI"], "2"], "\[LongEqual]", 
+         StyleBox["A", "TI"], "\[CenterDot]", 
+         StyleBox["A", "TI"], "\[LongEqual]", 
+         SuperscriptBox[
+          StyleBox["A", "TI"], "\[Mu]"], 
+         SubscriptBox["\[Eta]", "\[Mu]\[Nu]"], 
+         SuperscriptBox[
+          StyleBox["A", "TI"], "\[Nu]"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "A^2=A\\cdot A = A^\\mu \\eta_{\\mu\\nu} A^\\nu", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ff96065a-a657-4736-b052-74fbc6393761"],
+ ". Further mathematical simplifications can be made to this, depending on \
+the scenario. "
+}], "Text",
+ CellChangeTimes->{{3.92361171733777*^9, 
+  3.923611769292015*^9}},ExpressionUUID->"03d0c334-6b83-4057-94e6-\
+f114ad5147de"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{927, 826},
+WindowMargins->{{Automatic, -35}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9fa492d1-2bd8-4444-b57f-3151fa8b8573"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 156, 3, 98, "Title",ExpressionUUID->"41b5b627-536e-4b69-ac86-18514c47df09"],
+Cell[739, 27, 2179, 51, 159, "Text",ExpressionUUID->"a1808d37-a118-4b01-aa6d-3213174abd10"],
+Cell[CellGroupData[{
+Cell[2943, 82, 170, 3, 54, "Subsection",ExpressionUUID->"b9440ea1-9ec6-45f1-bb80-6b4a9782b767"],
+Cell[CellGroupData[{
+Cell[3138, 89, 1388, 39, 99, "Input",ExpressionUUID->"4b17aec9-2927-49b1-a3cd-30a61aa7f1b2"],
+Cell[4529, 130, 1189, 39, 125, "Output",ExpressionUUID->"59a4768c-b7d8-4c66-8c6d-ed91266467d6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5755, 174, 158, 3, 45, "Subsubsection",ExpressionUUID->"b65a508b-aa8f-4979-ac68-52182191e9b9"],
+Cell[CellGroupData[{
+Cell[5938, 181, 543, 14, 52, "Input",ExpressionUUID->"dbb7b642-0167-4aae-9326-910b587a5206"],
+Cell[6484, 197, 837, 27, 113, "Output",ExpressionUUID->"38ef1d3c-5170-47fc-aa01-c754cca3b1c6"]
+}, Open  ]],
+Cell[7336, 227, 369, 7, 58, "Text",ExpressionUUID->"e3f7a627-5b7d-434c-8aab-ebb6ebd94f65"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7754, 240, 246, 4, 54, "Subsection",ExpressionUUID->"283345f2-0522-4d75-8eab-9aef1413a0ca"],
+Cell[CellGroupData[{
+Cell[8025, 248, 716, 18, 52, "Input",ExpressionUUID->"60101ab9-787e-4b30-8601-92b85d946938"],
+Cell[8744, 268, 760, 24, 97, "Output",ExpressionUUID->"db571661-dd7d-46fc-abf2-0fb76204ab87"]
+}, Open  ]],
+Cell[9519, 295, 295, 6, 30, "Input",ExpressionUUID->"1c0382e5-ec89-4370-ac4f-8a1040816377"],
+Cell[CellGroupData[{
+Cell[9839, 305, 158, 3, 45, "Subsubsection",ExpressionUUID->"584976fe-3f68-49a5-9376-b4548682d5d8"],
+Cell[CellGroupData[{
+Cell[10022, 312, 208, 3, 30, "Input",ExpressionUUID->"a1ade71a-b205-424f-ad2d-2fe3dff815d9"],
+Cell[10233, 317, 167, 3, 34, "Output",ExpressionUUID->"4b53481c-f5ca-47a1-b05f-762e6c542e52"]
+}, Open  ]],
+Cell[10415, 323, 1021, 25, 60, "Text",ExpressionUUID->"03d0c334-6b83-4057-94e6-f114ad5147de"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
